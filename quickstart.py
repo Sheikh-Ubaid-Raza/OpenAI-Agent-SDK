@@ -1,3 +1,5 @@
+# Only Allow Math and History related questions
+
 from agents import Agent, GuardrailFunctionOutput, Runner,InputGuardrailTripwireTriggered, input_guardrail, enable_verbose_stdout_logging
 from pydantic import BaseModel
 import asyncio
@@ -32,6 +34,7 @@ history_tutor_agent = Agent(
 async def homework_guardrail(ctx, agent, input_data) -> GuardrailFunctionOutput:
     result = await Runner.run(guardrail_agent, input_data, context=ctx.context)
     final_output = result.final_output_as(HomeworkOutput)
+
     return GuardrailFunctionOutput(
         output_info=final_output,
         tripwire_triggered=not final_output.is_homework,
@@ -47,13 +50,20 @@ triage_agent = Agent(
 
 async def main():
 
-    try:
-        result = await Runner.run(triage_agent, "Who was the first president of USA?", run_config=my_config)
-        print("\nGuardrail Did Not Trigger")
-        print(result.final_output)
-    except InputGuardrailTripwireTriggered as e:
-        print("\nGuardrail Trigger")
-        print("Exception details:", str(e))
+    while True:
+        input_question = input("Ask Anything: ")
+
+        if input_question.lower() in ['quit', 'exit', 'bye']:
+            print("Goodbye!")
+            break
+
+        try:
+            result = await Runner.run(triage_agent, input_question , run_config=my_config)
+            print("\nGuardrail Did Not Trigger")
+            print("Agent:", result.final_output)
+        except InputGuardrailTripwireTriggered as e:
+            print("\nGuardrail Trigger")
+            print("Exception details:", str(e))
 
 
 if __name__ == "__main__":

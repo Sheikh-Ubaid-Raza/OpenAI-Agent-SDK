@@ -1,8 +1,18 @@
-from agents import Agent, GuardrailFunctionOutput, RunContextWrapper, Runner,InputGuardrailTripwireTriggered, enable_verbose_stdout_logging, TResponseInputItem, input_guardrail
+from agents import (
+    Agent, 
+    GuardrailFunctionOutput, 
+    RunContextWrapper, 
+    Runner, 
+    InputGuardrailTripwireTriggered, 
+    enable_verbose_stdout_logging, 
+    TResponseInputItem, 
+    input_guardrail
+)
+
 from pydantic import BaseModel
 from config import my_config, gemini_model
 
-enable_verbose_stdout_logging()
+# enable_verbose_stdout_logging()
 
 class HomeworkCheatDetectionOutput(BaseModel):
     attempting_cheat: bool
@@ -42,7 +52,7 @@ study_helper_agent = Agent(
 # This should trigger the cheat detection guardrail
 
 try:
-    response = Runner.run_sync(study_helper_agent, "Fill in the blank: The process of converting light energy into chemical energy is called ____.", run_config=my_config)
+    response = Runner.run_sync(study_helper_agent, "Father of Zoology is ____ .", run_config=my_config)
     print("Guardrail didn't trigger")
     print("Response: ", response.final_output)
 
@@ -50,13 +60,3 @@ except InputGuardrailTripwireTriggered as e:
     print("Homework cheat guardrail triggered")
     print("Exception details:", str(e))
 
-
-# # This should trigger the cheat detection guardrail
-# try:
-#     response = Runner.run_sync(study_helper_agent, "What were the main causes of the American civil war?", run_config=my_config)
-#     print("Guardrail didn't trigger")
-#     print("Response: ", response.final_output)
-
-# except InputGuardrailTripwireTriggered as e:
-#     print("Homework cheat guardrail triggered")
-#     print("Exception details:", str(e))

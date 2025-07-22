@@ -1,5 +1,5 @@
-from agents import Agent, Runner
-from config import my_config, enable_verbose_stdout_logging
+from agents import Agent, Runner, enable_verbose_stdout_logging
+from config import my_config
 
 enable_verbose_stdout_logging()
 
@@ -22,7 +22,7 @@ biology_agent = Agent(
 )
 response = Runner.run_sync(
     biology_agent, 
-    "To which kingdom and class do fish belong?", 
+    "Write some examples of carnivorous plants?", 
     run_config=my_config
 )
 

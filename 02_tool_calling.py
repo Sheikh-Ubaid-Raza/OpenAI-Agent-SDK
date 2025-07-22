@@ -3,7 +3,7 @@ from agents.run import RunConfig
 from dotenv import load_dotenv
 import asyncio
 import os
-enable_verbose_stdout_logging()
+# enable_verbose_stdout_logging()
 
 load_dotenv()
 API_KEY = os.getenv("GEMINI_API_KEY")
@@ -69,7 +69,7 @@ async def main():
 
     result = await Runner.run(
         agent,
-        "My name is Sheikh Ubaid.",
+        "What is the weather and temperature in Kuwait?",
         run_config=config
     )
 
