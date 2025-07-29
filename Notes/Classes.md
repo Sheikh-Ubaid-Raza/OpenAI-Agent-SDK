@@ -44,6 +44,9 @@ While the `Agent` is the worker, it needs a **`Runner`** to act as its **manager
 - ```python
   name: str
   ```
+- **If name not pass:**
+
+> TypeError: Agent.__init__() missing 1 required positional argument: 'name' 
 
 #### **2. instructions**
 - **What it does**: Tells the agent what to do, like a job description or rulebook.

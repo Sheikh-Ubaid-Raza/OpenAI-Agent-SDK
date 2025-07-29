@@ -6,12 +6,13 @@
 - [What is the OpenAI Agents SDK?](#what-is-the-openai-agents-sdk)
 - [Built in Agent Loop](#built-in-agent-loop)
 - [What is an LLM?](#what-is-an-llm)
-- [History of AI](#history-of-ai)
-- [History of AI](#history-of-ai)
-- [History of AI](#history-of-ai)
-- [History of AI](#history-of-ai)
-- [History of AI](#history-of-ai)
-- [History of AI](#history-of-ai)
+- [Tool Calling](#tool-calling)
+- [Handoff](#handoffs-the-delegator)
+- [Guardrails](#guardrails-the-safety-guard)
+- [Tracing](#tracing-or-observability-the-built-in-tracker)
+- [OpenAI Agents SDK Architecture](#openai-agents-sdk-architecture)
+- [Context](#context-management)
+- [Lifecycle (Hooks)](#lifecycle-events-hooks)
 
 # History of AI
 
